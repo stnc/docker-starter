@@ -1,0 +1,70 @@
+version: '3.5'
+
+services:
+  # App Service
+  golang:
+    # Configuration for building the docker image for the service
+    build:
+      context: ./ # Use an image built from the specified dockerfile in the current directory.
+      dockerfile: Dockerfile
+    container_name: krbn
+    volumes:
+      - "D:/docker/go2:/app"
+    ports:
+      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: unless-stopped
+    depends_on: 
+      - redis # This service depends on redis. Start that first.
+      - postgres # This service depends on redis. Start that first.
+    environment: # Pass environment variables to the service
+      REDIS_URL: redis:6379    
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  # Redis Service   
+  redis:
+    image: "redis:alpine" # Use a public Redis image to build the redis service    
+    restart: unless-stopped
+    container_name: krbnredis
+    networks:
+      - backend
+
+networks:
+  postgres:
+    driver: bridge
+  backend:
+
+volumes:
+    postgres:
+    pgadmin:
+    golang:

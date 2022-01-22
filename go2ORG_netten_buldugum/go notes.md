@@ -1,0 +1,1 @@
+docker run -v D:\dockerGo:/data -p 8080:8081 -it golang:latest

@@ -1,0 +1,10 @@
+air
+https://stackoverflow.com/questions/70321633/hot-reload-not-working-in-docker-with-golang-github-com-cosmtrek-air
+
+docker-compose up -d --build
+
+
+echo "host all all all $POSTGRES_HOST_AUTH_METHOD" >> pg_hba.conf
+
+
+

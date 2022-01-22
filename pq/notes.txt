@@ -1,0 +1,29 @@
+buradan buldum calısan docker https://github.com/khezen/compose-postgres
+
+
+https://turreta.com/2020/07/31/docker-compose-yml-for-pgadmin-and-postgresql/
+
+https://devnot.com/2017/docker-compose/
+
+https://blog.gmem.cc/ginkgo-study-note
+
+
+https://www.thegeekstuff.com/2014/02/enable-remote-postgresql-connection/
+
+adminner 
+https://www.reddit.com/r/docker/comments/jntcmv/postgresql_connect_to_container_from_remote/
+
+https://www.youtube.com/watch?v=JCVPrv6gCGw
+
+go 
+
+https://dangillis.dev/posts/archive/basic-redis-examples/
+
+https://levelup.gitconnected.com/crud-restful-api-with-go-gorm-jwt-postgres-mysql-and-testing-460a85ab7121
+https://blog.gmem.cc/ginkgo-study-note
+https://zhuanlan.zhihu.com/p/299585136
+
+bu cok oneömli
+https://github.com/ExcitingFrog/go-pangu/tree/master/routers
+
+https://devnot.com/2020/rabbitmq-ile-mesaj-yonetimi/
